@@ -1,0 +1,52 @@
+--- origsrc/binutils-2.20.51/bfd/configure	2010-06-28 23:17:21.000000000 -0500
++++ src/binutils-2.20.51/bfd/configure	2010-07-07 23:12:51.964162400 -0500
+@@ -14907,8 +14907,8 @@ if test "$enable_shared" = "yes"; then
+ # More hacks to build DLLs on Windows.
+   case "${host}" in
+   *-*-cygwin*)
+-    SHARED_LDFLAGS="-no-undefined"
+-    SHARED_LIBADD="-L`pwd`/../libiberty -liberty -L`pwd`/../intl -lintl -lcygwin -lkernel32"
++    SHARED_LDFLAGS="-no-undefined -Wl,--exclude-libs=libiberty.a"
++    SHARED_LIBADD="-Wl,`pwd`/../libiberty/libiberty.a -L`pwd`/../intl -lintl -lcygwin -lkernel32"
+   ;;
+   esac
+ 
+--- origsrc/binutils-2.20.51/bfd/configure.in	2010-06-28 23:17:22.000000000 -0500
++++ src/binutils-2.20.51/bfd/configure.in	2010-07-07 23:12:40.915530500 -0500
+@@ -538,8 +538,8 @@ changequote([,])dnl
+ # More hacks to build DLLs on Windows.
+   case "${host}" in
+   *-*-cygwin*)
+-    SHARED_LDFLAGS="-no-undefined"
+-    SHARED_LIBADD="-L`pwd`/../libiberty -liberty -L`pwd`/../intl -lintl -lcygwin -lkernel32"
++    SHARED_LDFLAGS="-no-undefined -Wl,--exclude-libs=libiberty.a"
++    SHARED_LIBADD="-Wl,`pwd`/../libiberty/libiberty.a -L`pwd`/../intl -lintl -lcygwin -lkernel32"
+   ;;
+   esac
+ 
+--- origsrc/binutils-2.20.51/opcodes/configure	2010-06-28 23:17:33.000000000 -0500
++++ src/binutils-2.20.51/opcodes/configure	2010-07-07 23:17:21.780595000 -0500
+@@ -12333,8 +12333,8 @@ if test "$enable_shared" = "yes"; then
+ 
+   case "${host}" in
+     *-*-cygwin*)
+-      SHARED_LDFLAGS="-no-undefined"
+-      SHARED_LIBADD="-L`pwd`/../bfd -lbfd -L`pwd`/../libiberty -liberty -L`pwd`/../intl -lintl -lcygwin"
++      SHARED_LDFLAGS="-no-undefined -Wl,--exclude-libs=libiberty.a"
++      SHARED_LIBADD="`pwd`/../bfd/libbfd.la -Wl,`pwd`/../libiberty/libiberty.a -L`pwd`/../intl -lintl -lcygwin"
+       ;;
+    *-*-darwin*)
+      SHARED_LIBADD="-Wl,`pwd`/../bfd/.libs/libbfd.dylib ${SHARED_LIBADD}"
+--- origsrc/binutils-2.20.51/opcodes/configure.in	2010-06-28 23:17:33.000000000 -0500
++++ src/binutils-2.20.51/opcodes/configure.in	2010-07-07 23:17:51.566298700 -0500
+@@ -139,8 +139,8 @@ changequote([,])dnl
+ 
+   case "${host}" in
+     *-*-cygwin*)
+-      SHARED_LDFLAGS="-no-undefined"
+-      SHARED_LIBADD="-L`pwd`/../bfd -lbfd -L`pwd`/../libiberty -liberty -L`pwd`/../intl -lintl -lcygwin"
++      SHARED_LDFLAGS="-no-undefined -Wl,--exclude-libs=libiberty.a"
++      SHARED_LIBADD="`pwd`/../bfd/libbfd.la -Wl,`pwd`/../libiberty/libiberty.a -L`pwd`/../intl -lintl -lcygwin"
+       ;;
+    *-*-darwin*)
+      SHARED_LIBADD="-Wl,`pwd`/../bfd/.libs/libbfd.dylib ${SHARED_LIBADD}"

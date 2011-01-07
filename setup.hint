@@ -1,0 +1,6 @@
+category: Devel
+requires: libintl8 zlib0
+sdesc: "GNU assember, linker, and similar utilities"
+ldesc: "This directory contains various GNU compilers, assemblers, 
+linkers, debuggers, etc., plus their support routines, definitions, and 
+documentation."

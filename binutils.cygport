@@ -2,8 +2,8 @@ TOOLCHAIN_TARGET="native"
 inherit toolchain
 
 NAME="binutils"
-VERSION=2.23.51
-RELEASE=1
+VERSION=2.23.52
+RELEASE=3
 CATEGORY="Devel"
 SUMMARY="GNU assember, linker, and similar utilities"
 DESCRIPTION="This directory contains various GNU compilers, assemblers, linkers,
@@ -11,8 +11,8 @@ debuggers, etc., plus their support routines, definitions, and documentation."
 HOMEPAGE="http://www.gnu.org/software/binutils/"
 case ${VERSION} in
 *.*.[5-9][0-9])
-	SRC_URI="mirror://sourceware/binutils/snapshots/binutils.tar.bz2"
-	SRC_DIR="binutils-" ;;
-*)	SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.bz2" ;;
+	SRC_URI="mirror://sourceware/binutils/snapshots/binutils-${VERSION}.tar.bz2" ;;
+*)	SRC_URI="mirror://gnu/binutils/binutils-${VERSION}.tar.bz2" ;;
 esac
 #PATCH_URI+=" 2.20.51-shared-libs.patch"
+PATCH_URI+=" 2.23.52-x86-64-pc32-relocs.patch"

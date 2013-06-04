@@ -3,7 +3,7 @@ inherit toolchain
 
 NAME="binutils"
 VERSION=2.23.52
-RELEASE=3
+RELEASE=4
 CATEGORY="Devel"
 SUMMARY="GNU assember, linker, and similar utilities"
 DESCRIPTION="This directory contains various GNU compilers, assemblers, linkers,

@@ -3,7 +3,7 @@ inherit toolchain
 
 NAME="binutils"
 VERSION=2.23.52
-RELEASE=4
+RELEASE=5
 CATEGORY="Devel"
 SUMMARY="GNU assember, linker, and similar utilities"
 DESCRIPTION="This directory contains various GNU compilers, assemblers, linkers,
@@ -16,3 +16,6 @@ case ${VERSION} in
 esac
 #PATCH_URI+=" 2.20.51-shared-libs.patch"
 PATCH_URI+=" 2.23.52-x86-64-pc32-relocs.patch"
+# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=56780
+PATCH_URI+=" 2.23.52-install-libiberty.patch"
+CYGCONF_ARGS="--enable-install-libiberty"

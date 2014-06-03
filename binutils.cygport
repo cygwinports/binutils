@@ -1,21 +1,27 @@
 TOOLCHAIN_TARGET="native"
-inherit toolchain
+GIT_URI="git://sourceware.org/git/binutils-gdb.git"
+inherit toolchain git
 
 NAME="binutils"
-VERSION=2.23.52
-RELEASE=5
+VERSION=2.24.51
+RELEASE=4
 CATEGORY="Devel"
 SUMMARY="GNU assember, linker, and similar utilities"
 DESCRIPTION="This directory contains various GNU compilers, assemblers, linkers,
 debuggers, etc., plus their support routines, definitions, and documentation."
 HOMEPAGE="http://www.gnu.org/software/binutils/"
-case ${VERSION} in
-*.*.[5-9][0-9])
-	SRC_URI="mirror://sourceware/binutils/snapshots/binutils-${VERSION}.tar.bz2" ;;
-*)	SRC_URI="mirror://gnu/binutils/binutils-${VERSION}.tar.bz2" ;;
-esac
-#PATCH_URI+=" 2.20.51-shared-libs.patch"
-PATCH_URI+=" 2.23.52-x86-64-pc32-relocs.patch"
-# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=56780
-PATCH_URI+=" 2.23.52-install-libiberty.patch"
-CYGCONF_ARGS="--enable-install-libiberty"
+#case ${VERSION} in
+#*.*.[5-9][0-9])
+#	SRC_URI="mirror://sourceware/binutils/snapshots/binutils-${VERSION}.tar.bz2" ;;
+#*)	SRC_URI="mirror://gnu/binutils/binutils-${VERSION}.tar.bz2" ;;
+#esac
+#PATCH_URI+=" 2.24.51-shared-libs.patch"
+
+# gdb,etc.: https://sourceware.org/ml/binutils/2014-01/msg00341.html
+CYGCONF_ARGS="
+	--enable-install-libiberty
+	--disable-gdb
+	--disable-libdecnumber
+	--disable-readline
+	--disable-sim
+"

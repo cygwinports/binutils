@@ -4,7 +4,7 @@ inherit toolchain # git
 
 NAME="binutils"
 VERSION=2.24.51
-RELEASE=4
+RELEASE=5
 CATEGORY="Devel"
 SUMMARY="GNU assember, linker, and similar utilities"
 DESCRIPTION="This directory contains various GNU compilers, assemblers, linkers,
@@ -16,8 +16,10 @@ case ${VERSION} in
 *)	SRC_URI="mirror://gnu/binutils/binutils-${VERSION}.tar.bz2" ;;
 esac
 #PATCH_URI+=" 2.24.51-shared-libs.patch"
+PATCH_URI+=" 2.24.51-ld-__dso_handle.patch"
 
 # gdb,etc.: https://sourceware.org/ml/binutils/2014-01/msg00341.html
+# for shared libbfd/libopcodes, add:
 #	--enable-shared
 CYGCONF_ARGS="
 	--enable-install-libiberty
@@ -31,6 +33,7 @@ src_install() {
 	cd ${B}
 	cyginstall
 
+	# for shared libbfd/libopcodes, add:
 	# APIs are unstable, do not allow linking against DLLs
 #	rm -f ${D}/usr/lib/*.dll.a
 #	sed -i -e '/^library_names=/d' ${D}/usr/lib/lib*.la

@@ -1,10 +1,9 @@
 TOOLCHAIN_TARGET="native"
-#GIT_URI="git://sourceware.org/git/binutils-gdb.git"
-inherit toolchain # git
+inherit toolchain
 
 NAME="binutils"
-VERSION=2.24.51
-RELEASE=5
+VERSION=2.25
+RELEASE=1
 CATEGORY="Devel"
 SUMMARY="GNU assember, linker, and similar utilities"
 DESCRIPTION="This directory contains various GNU compilers, assemblers, linkers,
@@ -16,7 +15,6 @@ case ${VERSION} in
 *)	SRC_URI="mirror://gnu/binutils/binutils-${VERSION}.tar.bz2" ;;
 esac
 #PATCH_URI+=" 2.24.51-shared-libs.patch"
-PATCH_URI+=" 2.24.51-ld-__dso_handle.patch"
 
 # gdb,etc.: https://sourceware.org/ml/binutils/2014-01/msg00341.html
 # for shared libbfd/libopcodes, add:
